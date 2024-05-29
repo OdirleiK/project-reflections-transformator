@@ -30,4 +30,15 @@ public class TransformatorTest {
             PessoaDTO pessoaDTO = transformator.transform(endereco);
         });
     }
+
+    @Test
+    public void shouldTransformWhenSomeFieldIsNull() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        Pessoa pessoaSemCpf = new Pessoa("joao");
+        Transformator transformator = new Transformator();
+        PessoaDTO pessoaSemCpfDTO = transformator.transform(pessoaSemCpf);
+
+        Assertions.assertEquals(pessoa.getNome(), pessoaSemCpfDTO.getNome());
+        Assertions.assertNull(pessoaSemCpf.getCpf());
+
+    }
 }
